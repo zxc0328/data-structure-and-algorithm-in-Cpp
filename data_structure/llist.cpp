@@ -29,6 +29,7 @@ public:
 	void addToHead(int);
 	void addToTail(int);
 	void printList();
+	void reverseList();
 private:
 	Node *head, *tail;
 };
@@ -48,6 +49,19 @@ void List::printList() {
 		std::cout << ptr->data << std::endl;
 		ptr = ptr->next;
 	}
+}
+
+void List::reverseList() {
+	Node *node2 = head;
+	Node *node1 = 0;
+	Node *next = 0;
+	while (node2 != 0) {
+		next = node2->next;
+		node2->next = node1;
+		node1 = node2;
+		node2 = next;
+	}
+	head = node1;
 }
 
 
@@ -72,6 +86,7 @@ int main() {
 	List l = List();
 	l.addToTail(1);
 	l.addToTail(2);
+	l.reverseList();
 	l.printList();
 	return 0;
 }
