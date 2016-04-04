@@ -11,13 +11,18 @@ int main() {
 	cin >> count;
 	vector<vector <int> > data(count, vector<int> (count, 0));
 	int max = count*count;
-	int x = -1, y = 0, cur = 0;
+	int x = 0, y = -1, cur = 0;
          
         while (cur < max) {
-            for (; x + 1 < count && data[x + 1][y] == 0; data[y][++x] = ++cur);
-            for (; y + 1 < count && data[x][y + 1] == 0; data[++y][x] = ++cur);
-            for (; x - 1 >= 0 && data[y][x - 1] == 0; data[y][--x] = ++cur);
-            for (; y - 1 >= 0 && data[y - 1][x] == 0; data[--y][x] = ++cur);
+        		// go right
+            for (; y + 1 < count && data[x][y + 1] == 0; data[x][++y] = ++cur);
+        	  // go bottom
+            for (; x + 1 < count && data[x + 1][y] == 0; data[++x][y] = ++cur);
+            // go left
+            for (; y - 1 >= 0 && data[x][y - 1] == 0; data[x][--y] = ++cur);
+            // go top
+            for (; x - 1 >= 0 && data[x-1][y] == 0; data[--x][y] = ++cur);
+            
         }
 
 	for (int i=0;i<count;i++){
